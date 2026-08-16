@@ -106,7 +106,7 @@ def bomba_sobrevivencia():
     bomba3 = random.randint(0, 9)
     bomba4 = random.randint(0, 9)
     while bomba4 == bomba3:
-        bomba3 = random.randint(0, 9)
+        bomba4 = random.randint(0, 9)
         
     vidas_extras = random.randint(0, 9)
     return bomba3, bomba4, vidas_extras
