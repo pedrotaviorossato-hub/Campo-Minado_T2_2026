@@ -8,6 +8,20 @@ def int_classico():
         "4. O número de bombas adjacentes remete a quantidade de bombas que estão ao redor da célula escolhida.\n"
         "5. Boa sorte!")
     print()
+    while True:
+        escolha = int(input("Você deseja inicar o jogo[1] ou voltar ao menu[2]? "))
+        if escolha == 1:
+            print("Iniciando o Jogo...")
+            jogar_classico()
+            return
+            
+        elif escolha == 2:
+            print("Voltando ao menu...")
+            return
+            
+        else:
+            print("Escolha invalida, Tente novamente")
+            continue
     
 def int_sobrevivencia():
     print("Modo Sobrevivência | Instruções: \n"
@@ -18,19 +32,29 @@ def int_sobrevivencia():
         "5. O jogo termina quando você perde todas as vidas.\n" \
         "6. Boa sorte!")
     print()
+    while True:
+        escolha = int(input("Você deseja inicar o jogo[1] ou voltar ao menu[2]? "))
+        if escolha == 1:
+            print("Iniciando o Jogo...")
+            jogar_sobrevivencia()
+            return
+            
+        elif escolha == 2:
+            print("Voltando ao menu...")
+            return
+            
+        else:
+            print("Escolha invalida, Tente novamente")
+            continue
     
 def conta_minas_adjacentes(linha, coluna, bomba1, bomba2, tabuleiro):
     minas = 0
-    
     for di in [-1, 0, 1]:
         for dj in [-1, 0, 1]:
-            
             if di == 0 and dj == 0:
                 continue
-            
             ni = linha + di
             nj = coluna + dj
-            
             if 0 <= ni < len(tabuleiro) and 0 <= nj < len(tabuleiro[0]):
                 if (ni, nj) == bomba1 or (ni, nj) == bomba2:
                     minas += 1
@@ -51,7 +75,6 @@ def mostrar_tabuleiro(tabuleiro):
 
         for casa in linha:
             print(f"{casa:^5}", end="")
-
         print()
     
 def jogar_classico():
@@ -106,7 +129,7 @@ def bomba_sobrevivencia():
     bomba3 = random.randint(0, 9)
     bomba4 = random.randint(0, 9)
     while bomba4 == bomba3:
-        bomba4 = random.randint(0, 9)
+        bomba3 = random.randint(0, 9)
         
     vidas_extras = random.randint(0, 9)
     return bomba3, bomba4, vidas_extras
@@ -120,9 +143,10 @@ def jogar_sobrevivencia():
     vidas_max = 6
     rodadas = 0
     
-    bomba3, bomba4, vidas_extras = bomba_sobrevivencia()
-    matriz = tab_sobrevivencia()
+    
     while True:
+        matriz = tab_sobrevivencia()
+        bomba3, bomba4, vidas_extras = bomba_sobrevivencia()
         print("   0  1  2  3  4")
 
         for linha_num, linha in enumerate(matriz):
